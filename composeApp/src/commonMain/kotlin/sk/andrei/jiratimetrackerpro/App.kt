@@ -19,6 +19,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import jiratimetrackerpro.composeapp.generated.resources.Res
 import jiratimetrackerpro.composeapp.generated.resources.compose_multiplatform
+import sk.andrei.jiratimetrackerpro.presentation.feature.root.RootComponent
 
 @Composable
 @Preview

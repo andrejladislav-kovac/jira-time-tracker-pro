@@ -1,4 +1,4 @@
-package sk.andrei.jiratimetrackerpro
+package sk.andrei.jiratimetrackerpro.presentation.feature.root
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue

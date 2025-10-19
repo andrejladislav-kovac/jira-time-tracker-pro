@@ -8,6 +8,7 @@ import androidx.compose.ui.window.rememberWindowState
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.decompose.extensions.compose.lifecycle.LifecycleController
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
+import sk.andrei.jiratimetrackerpro.presentation.feature.root.RootComponentImpl
 
 fun main() {
     val lifecycle = LifecycleRegistry()

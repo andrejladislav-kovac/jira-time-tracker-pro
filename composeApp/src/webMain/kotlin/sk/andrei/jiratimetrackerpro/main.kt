@@ -9,6 +9,8 @@ import com.arkivanov.essenty.lifecycle.stop
 import com.arkivanov.essenty.statekeeper.StateKeeperDispatcher
 import kotlinx.browser.document
 import org.w3c.dom.Document
+import sk.andrei.jiratimetrackerpro.presentation.feature.root.RootComponent
+import sk.andrei.jiratimetrackerpro.presentation.feature.root.RootComponentImpl
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
