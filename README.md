@@ -1,5 +1,6 @@
 # Jira Time Tacker Pro
-## or how to make high-quality multiplatform app
+
+or how to make high-quality "every-platform" app
 
 # You can run it on
 * Android
