@@ -1,4 +1,4 @@
-package sk.andrei.jiratimetrackerpro.infrastructure.core
+package sk.andrei.jiratimetrackerpro.infrastructure
 
 import io.ktor.client.HttpClient
 import org.koin.dsl.module
