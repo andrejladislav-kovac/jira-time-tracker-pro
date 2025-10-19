@@ -2,6 +2,8 @@
 
 or how to make high-quality "every-platform" app
 
+[![Wakatime](https://wakatime.com/badge/user/dc8d687f-af52-4c4e-9521-117e01f124aa/project/ef1f5335-25ec-4b8d-ab57-77e3016475e9.svg)](https://wakatime.com/badge/user/dc8d687f-af52-4c4e-9521-117e01f124aa/project/ef1f5335-25ec-4b8d-ab57-77e3016475e9)
+
 # You can run it on
 * Android
 * iOS
