@@ -19,7 +19,7 @@ fun createHttpClient() = HttpClient {
     defaultRequest {
         url {
             protocol = URLProtocol.HTTPS
-            host = "api.andrei.sk/flow"
+            host = "TBD"
         }
         contentType(ContentType.Application.Json)
     }
