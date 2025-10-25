@@ -1,0 +1,8 @@
+package sk.andrei.jiratimetrackerpro.presentation.core.ui
+
+import android.content.res.Configuration
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalConfiguration
+
+@Composable
+actual fun isLandscape() = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
