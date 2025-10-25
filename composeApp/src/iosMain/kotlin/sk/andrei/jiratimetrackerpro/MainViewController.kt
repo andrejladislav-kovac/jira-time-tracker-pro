@@ -1,6 +1,8 @@
 package sk.andrei.jiratimetrackerpro
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.ComposeUIViewController
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
@@ -32,7 +34,7 @@ fun MainViewController(): UIViewController {
 
     return ComposeUIViewController {
         RootScreen(
-            modifier = Modifier,
+            modifier = Modifier.padding(top = 32.dp), // FIXME
             component = rootComponent,
         )
     }
