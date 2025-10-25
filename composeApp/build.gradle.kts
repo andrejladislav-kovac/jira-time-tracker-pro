@@ -76,6 +76,10 @@ kotlin {
         nativeMain.dependencies {
             implementation(libs.sqldelight.native)
         }
+        webMain.dependencies {
+            implementation(libs.sqldelight.web)
+            implementation(devNpm("copy-webpack-plugin", "9.1.0")) // FIXME: move to libs
+        }
     }
 }
 
