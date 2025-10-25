@@ -44,3 +44,4 @@ Add to `Other Linker Flags`: `-lsqlite3`
 ### TODO:
 * one instance can share credentials to other instance via qr
 * modularize
+* web db persistence
