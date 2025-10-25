@@ -5,7 +5,7 @@ import sk.andrei.jiratimetrackerpro.domain.feature.settings.model.JiraSettings
 
 interface SettingsRepository {
 
-    fun saveJiraSettings(jiraSettings: JiraSettings)
-    fun getJiraSettings(): JiraSettings
+    suspend fun saveJiraSettings(jiraSettings: JiraSettings)
+    suspend fun getJiraSettings(): JiraSettings
 
 }

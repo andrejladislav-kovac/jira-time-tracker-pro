@@ -58,5 +58,6 @@ private fun LifecycleRegistry.attachToDocument() {
 }
 
 // Workaround for Document#visibilityState not available in Wasm
+@OptIn(ExperimentalWasmJsInterop::class)
 @JsFun("(document) => document.visibilityState")
 private external fun visibilityState(document: Document): String

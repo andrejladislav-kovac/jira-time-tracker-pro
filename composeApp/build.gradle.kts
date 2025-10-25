@@ -79,6 +79,9 @@ kotlin {
         webMain.dependencies {
             implementation(libs.sqldelight.web)
             implementation(devNpm("copy-webpack-plugin", "9.1.0")) // FIXME: move to libs
+            implementation(devNpm("webpack", "5.89.0"))
+            implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.1.0"))
+            implementation(npm("sql.js", "1.8.0"))
         }
     }
 }
@@ -130,6 +133,7 @@ sqldelight {
     databases {
         create("JttpDatabase") {
             packageName.set("sk.andrei.jiratimetrackerpro.data.database")
+            generateAsync = true
         }
     }
 }
