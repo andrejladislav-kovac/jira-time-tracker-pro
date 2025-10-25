@@ -40,5 +40,7 @@ or how to make high-quality multiplatform app
 To build and run the development version of the iOS app, use the run configuration from the run widget
 in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and run it from there.
 
+Add to `Other Linker Flags`: `-lsqlite3`
+
 TODO:
 one instance can share credentials to other instance via qr
