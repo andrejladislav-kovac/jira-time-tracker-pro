@@ -1,0 +1,11 @@
+CREATE TABLE SettingEntity (
+     id TEXT PRIMARY KEY NOT NULL,
+     value TEXT
+);
+
+findByIds:
+SELECT * FROM SettingEntity WHERE id IN ?;
+
+upsert:
+INSERT OR REPLACE INTO SettingEntity (id, value)
+VALUES (?, ?);

@@ -8,6 +8,8 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -41,6 +43,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
 
             implementation(libs.koin.android)
+            implementation(libs.sqldelight.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -68,6 +71,10 @@ kotlin {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
+            implementation(libs.sqldelight.desktop)
+        }
+        nativeMain.dependencies {
+            implementation(libs.sqldelight.native)
         }
     }
 }
@@ -114,3 +121,12 @@ compose.desktop {
         }
     }
 }
+
+sqldelight {
+    databases {
+        create("JttpDatabase") {
+            packageName.set("sk.andrei.jiratimetrackerpro.data.database")
+        }
+    }
+}
+
