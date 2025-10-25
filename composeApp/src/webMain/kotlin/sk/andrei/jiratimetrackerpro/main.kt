@@ -1,6 +1,7 @@
 package sk.andrei.jiratimetrackerpro
 
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.ComposeViewport
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
@@ -8,16 +9,35 @@ import com.arkivanov.essenty.lifecycle.resume
 import com.arkivanov.essenty.lifecycle.stop
 import com.arkivanov.essenty.statekeeper.StateKeeperDispatcher
 import kotlinx.browser.document
+import org.koin.core.context.startKoin
 import org.w3c.dom.Document
-import sk.andrei.jiratimetrackerpro.presentation.feature.root.RootComponent
-import sk.andrei.jiratimetrackerpro.presentation.feature.root.RootComponentImpl
+import sk.andrei.jiratimetrackerpro.data.dataModule
+import sk.andrei.jiratimetrackerpro.domain.domainModule
+import sk.andrei.jiratimetrackerpro.infrastructure.infrastructureModule
+import sk.andrei.jiratimetrackerpro.infrastructure.platformInfrastructureModule
+import sk.andrei.jiratimetrackerpro.presentation.feature.root.component.RootComponent
+import sk.andrei.jiratimetrackerpro.presentation.feature.root.component.RootComponentImpl
+import sk.andrei.jiratimetrackerpro.presentation.feature.root.ui.RootScreen
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
+
+    startKoin {
+        modules(
+            dataModule,
+            infrastructureModule,
+            platformInfrastructureModule,
+            domainModule
+        )
+    }
+
     val rootComponent = createRootComponent()
 
     ComposeViewport {
-        App(rootComponent)
+        RootScreen(
+            modifier = Modifier,
+            component = rootComponent,
+        )
     }
 }
 
