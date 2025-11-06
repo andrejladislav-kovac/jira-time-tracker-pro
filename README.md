@@ -12,6 +12,12 @@ or how to make high-quality multiplatform app
 * Linux
 * Web, yes
 
+| ![Android](./docs/android.png) | ![iOS](./docs/ios.png) | ![Wasm](./docs/wasm.png) |
+|--------------------------------|------------------------|--------------------------|
+
+| ![Desktop](./docs/desktop.png) |
+|--------------------------------|
+
 # Shared
 * Data Layer
 * Domain Layer
