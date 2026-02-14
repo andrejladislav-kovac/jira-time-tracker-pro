@@ -5,9 +5,10 @@ import sk.andrei.jiratimetrackerpro.presentation.feature.common.textinput.TextIn
 
 interface SettingsComponent {
 
-    val urlComponent: TextInputComponent
+    val jiraSiteComponent: TextInputComponent
+    val jiraEmailComponent: TextInputComponent
 
-    val tokenComponent: PasswordInputComponent
+    val jiraTokenComponent: PasswordInputComponent
 
     fun onBackClick()
 

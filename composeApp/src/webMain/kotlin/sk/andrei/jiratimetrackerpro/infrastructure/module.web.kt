@@ -9,7 +9,7 @@ import org.w3c.dom.Worker
 val scriptUrl: String = js("""new URL("@cashapp/sqldelight-sqljs-worker/sqljs.worker.js", import.meta.url)""")
 
 @OptIn(ExperimentalWasmJsInterop::class)
-actual val platformInfrastructureModule = module {
+actual val databaseModule = module {
 
     single<SqlDriver> {
         WebWorkerDriver(

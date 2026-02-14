@@ -8,22 +8,16 @@ import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import org.koin.core.context.startKoin
 import platform.UIKit.UIViewController
-import sk.andrei.jiratimetrackerpro.data.dataModule
+import sk.andrei.jiratimetrackerpro.data.dataModules
 import sk.andrei.jiratimetrackerpro.domain.domainModule
-import sk.andrei.jiratimetrackerpro.infrastructure.infrastructureModule
-import sk.andrei.jiratimetrackerpro.infrastructure.platformInfrastructureModule
 import sk.andrei.jiratimetrackerpro.presentation.feature.root.component.RootComponentImpl
 import sk.andrei.jiratimetrackerpro.presentation.feature.root.ui.RootScreen
+import kotlin.collections.plus
 
 fun MainViewController(): UIViewController {
 
     startKoin {
-        modules(
-            dataModule,
-            infrastructureModule,
-            platformInfrastructureModule,
-            domainModule
-        )
+        modules(dataModules + domainModule)
     }
 
     val lifecycle = LifecycleRegistry()

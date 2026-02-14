@@ -1,17 +1,23 @@
 package sk.andrei.jiratimetrackerpro.data
 
 import app.cash.sqldelight.db.SqlDriver
+import org.koin.core.module.Module
 import org.koin.dsl.module
+import sk.andrei.jiratimetrackerpro.data.core.network.NetworkConfigRepositoryImpl
+import sk.andrei.jiratimetrackerpro.data.core.network.NetworkClient
 import sk.andrei.jiratimetrackerpro.data.database.JttpDatabase
-import sk.andrei.jiratimetrackerpro.data.database.SettingEntityQueries
-import sk.andrei.jiratimetrackerpro.data.feature.issue.repository.LocalIssueRepositoryImpl
-import sk.andrei.jiratimetrackerpro.data.feature.issue.repository.RemoteIssueRepositoryImpl
-import sk.andrei.jiratimetrackerpro.data.feature.settings.repository.SettingsRepositoryImpl
-import sk.andrei.jiratimetrackerpro.domain.feature.issue.repository.LocalIssueRepository
-import sk.andrei.jiratimetrackerpro.domain.feature.issue.repository.RemoteIssueRepository
-import sk.andrei.jiratimetrackerpro.domain.feature.settings.repository.SettingsRepository
+import sk.andrei.jiratimetrackerpro.data.feature.issue.repository.IssueRepositoryImpl
+import sk.andrei.jiratimetrackerpro.data.feature.profile.repository.JiraProfileRepositoryImpl
+import sk.andrei.jiratimetrackerpro.data.feature.credentials.repository.CredentialsRepositoryImpl
+import sk.andrei.jiratimetrackerpro.domain.feature.issue.repository.IssueRepository
+import sk.andrei.jiratimetrackerpro.domain.feature.profile.repository.JiraProfileRepository
+import sk.andrei.jiratimetrackerpro.domain.feature.settings.repository.CredentialsRepository
+import sk.andrei.jiratimetrackerpro.data.core.network.NetworkConfigRepository
+import sk.andrei.jiratimetrackerpro.data.feature.common.settings.repository.GenericValueRepository
+import sk.andrei.jiratimetrackerpro.data.feature.user.repository.UserRepositoryImpl
+import sk.andrei.jiratimetrackerpro.domain.feature.user.repository.UserRepository
 
-val dataModule = module {
+val dataModules = platformDataModule + module {
 
     single<JttpDatabase> {
         JttpDatabase(
@@ -19,20 +25,50 @@ val dataModule = module {
         )
     }
 
-    single<LocalIssueRepository> {
-        LocalIssueRepositoryImpl()
-    }
-
-    single<RemoteIssueRepository> {
-        RemoteIssueRepositoryImpl(
-            httpClient = get()
+    single<IssueRepository> {
+        IssueRepositoryImpl(
+            networkClient = get()
         )
     }
 
-    single<SettingsRepository> {
-        SettingsRepositoryImpl(
+    single<GenericValueRepository> {
+        GenericValueRepository(
             settingsEntityQueries = get<JttpDatabase>().settingEntityQueries
         )
     }
 
+    single<CredentialsRepository> {
+        CredentialsRepositoryImpl(
+            genericValueRepository = get()
+        )
+    }
+
+    single<UserRepository> {
+        UserRepositoryImpl(
+            credentialsRepository = get(),
+            networkClient = get()
+        )
+    }
+
+    single<NetworkConfigRepository> {
+        NetworkConfigRepositoryImpl(
+            credentialsRepository = get()
+        )
+    }
+
+    single<JiraProfileRepository> {
+        JiraProfileRepositoryImpl(
+            networkClient = get(),
+            genericValueRepository = get()
+        )
+    }
+
+    single<NetworkClient> {
+        NetworkClient(
+            networkConfigRepository = get()
+        )
+    }
+
 }
+
+expect val platformDataModule: Module

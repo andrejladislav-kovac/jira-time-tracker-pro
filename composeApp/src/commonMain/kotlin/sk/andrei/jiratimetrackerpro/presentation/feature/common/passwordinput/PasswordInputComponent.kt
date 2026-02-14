@@ -1,9 +1,12 @@
 package sk.andrei.jiratimetrackerpro.presentation.feature.common.passwordinput
 
 import kotlinx.serialization.Serializable
-import sk.andrei.jiratimetrackerpro.presentation.core.StatefulComponent
+import sk.andrei.jiratimetrackerpro.presentation.core.component.StatefulComponent
+import sk.andrei.jiratimetrackerpro.presentation.core.component.ValidatableComponent
 
-interface PasswordInputComponent: StatefulComponent<PasswordInputComponent.State> {
+interface PasswordInputComponent :
+    StatefulComponent<PasswordInputComponent.State>,
+    ValidatableComponent<String> {
 
     val value: String
         get() = state.value.password
@@ -13,7 +16,7 @@ interface PasswordInputComponent: StatefulComponent<PasswordInputComponent.State
     fun onVisibilityToggle()
 
     @Serializable
-    data class State (
+    data class State(
         val password: String = "",
         val isValid: Boolean = true,
         val isHidden: Boolean = true

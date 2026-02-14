@@ -4,6 +4,8 @@ or how to make high-quality multiplatform app
 
 [![Wakatime](https://wakatime.com/badge/user/dc8d687f-af52-4c4e-9521-117e01f124aa/project/ef1f5335-25ec-4b8d-ab57-77e3016475e9.svg)](https://wakatime.com/badge/user/dc8d687f-af52-4c4e-9521-117e01f124aa/project/ef1f5335-25ec-4b8d-ab57-77e3016475e9)
 
+### Current peak-feature: It can show a list of your issues which are not completed yet :)
+
 # You can run it on
 * Android
 * iOS

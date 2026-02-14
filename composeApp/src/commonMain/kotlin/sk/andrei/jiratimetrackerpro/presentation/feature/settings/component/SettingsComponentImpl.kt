@@ -3,43 +3,70 @@ package sk.andrei.jiratimetrackerpro.presentation.feature.settings.component
 import com.arkivanov.decompose.ComponentContext
 import kotlinx.serialization.builtins.serializer
 import org.koin.core.component.inject
-import sk.andrei.jiratimetrackerpro.domain.feature.settings.model.JiraSettings
+import sk.andrei.jiratimetrackerpro.domain.feature.profile.usecase.UpdateJiraProfileUseCase
 import sk.andrei.jiratimetrackerpro.domain.feature.settings.usecase.GetJiraSettingsUseCase
-import sk.andrei.jiratimetrackerpro.domain.feature.settings.usecase.SaveJiraSettingsUseCase
-import sk.andrei.jiratimetrackerpro.presentation.core.BaseComponent
+import sk.andrei.jiratimetrackerpro.domain.feature.settings.usecase.UpdateUserUseCase
+import sk.andrei.jiratimetrackerpro.domain.feature.user.model.User
+import sk.andrei.jiratimetrackerpro.presentation.core.component.BaseComponent
 import sk.andrei.jiratimetrackerpro.presentation.feature.common.passwordinput.PasswordInputComponentImpl
 import sk.andrei.jiratimetrackerpro.presentation.feature.common.textinput.TextInputComponentImpl
+import kotlin.getValue
 
 class SettingsComponentImpl(
-    context: ComponentContext
-): SettingsComponent, BaseComponent<Unit>(
+    context: ComponentContext,
+    private val goBack: () -> Unit,
+) : SettingsComponent, BaseComponent<Unit>(
     context = context,
     initialState = Unit,
     serializer = Unit.serializer(),
 ) {
-    override val urlComponent = TextInputComponentImpl(context, "settings_url")
-    override val tokenComponent = PasswordInputComponentImpl(context, "settings_token")
 
-    private val getJiraSettings: GetJiraSettingsUseCase by inject()
-    private val saveJiraSettings: SaveJiraSettingsUseCase by inject()
+    override val jiraSiteComponent = TextInputComponentImpl(
+        context,
+        "settings_jira_site",
+        ::validator
+    )
+    override val jiraEmailComponent = TextInputComponentImpl(
+        context,
+        "settings_jira_email",
+        ::validator
+    )
+    override val jiraTokenComponent = PasswordInputComponentImpl(
+        context,
+        "settings_jira_token",
+        ::validator
+    )
+
+    private val getUser: GetJiraSettingsUseCase by inject()
+    private val updateProfile by inject<UpdateJiraProfileUseCase>()
+    private val saveUser: UpdateUserUseCase by inject()
 
     init {
         doInBackground {
-            getJiraSettings().onSuccess {
-                urlComponent.onChange(it.url ?: "", false)
-                tokenComponent.onChange(it.token ?: "", false)
+            getUser().onSuccess {
+                jiraSiteComponent.onChange(it.organization, false)
+                jiraEmailComponent.onChange(it.email, false)
+                jiraTokenComponent.onChange(it.token, false)
             }
         }
     }
 
     override fun onSaveClick() {
+        if (!validateComponents(jiraSiteComponent, jiraEmailComponent, jiraTokenComponent)) {
+            return
+        }
+        val user = User(
+            organization = jiraSiteComponent.value,
+            email = jiraEmailComponent.value,
+            token = jiraTokenComponent.value,
+        )
         doInBackground {
-            saveJiraSettings(
-                JiraSettings(
-                    url = urlComponent.value,
-                    token = tokenComponent.value
-                )
-            )
+            saveUser(user)
+            updateProfile().onSuccess {
+                doInForeground(goBack)
+            }.onFailure {
+                println(it)
+            }
         }
     }
 
@@ -47,8 +74,7 @@ class SettingsComponentImpl(
 
     }
 
-    override fun onBackClick() {
+    override fun onBackClick() = goBack()
 
-
-    }
+    private fun validator(value: String) = value.isNotBlank()
 }

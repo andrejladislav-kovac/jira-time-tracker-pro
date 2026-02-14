@@ -1,12 +1,12 @@
 package sk.andrei.jiratimetrackerpro.presentation.feature.common.textinput
 
 import com.arkivanov.decompose.ComponentContext
-import sk.andrei.jiratimetrackerpro.presentation.core.BaseComponent
+import sk.andrei.jiratimetrackerpro.presentation.core.component.BaseComponent
 
 open class TextInputComponentImpl(
     context: ComponentContext,
     stateStoringName: String? = null,
-    private val validator: ((String) -> Boolean) = { true }
+    override val validator: ((String) -> Boolean) = { true }
 ) : TextInputComponent, BaseComponent<TextInputComponent.State>(
     context = context,
     stateStoringName = stateStoringName,
@@ -21,5 +21,13 @@ open class TextInputComponentImpl(
                 isValid = if (shouldValidate) validator(value) else it.isValid
             )
         }
+    }
+
+    override fun validate(): Boolean {
+        return state.update {
+            it.copy(
+                isValid = validator(it.text)
+            )
+        }.isValid
     }
 }

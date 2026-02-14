@@ -16,7 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import sk.andrei.jiratimetrackerpro.presentation.feature.common.passwordinput.ThePasswordInput
-import sk.andrei.jiratimetrackerpro.presentation.feature.common.screen.Back
+import sk.andrei.jiratimetrackerpro.presentation.feature.common.screen.BackAction
+import sk.andrei.jiratimetrackerpro.presentation.feature.common.screen.PrimaryAction
 import sk.andrei.jiratimetrackerpro.presentation.feature.common.screen.Screen
 import sk.andrei.jiratimetrackerpro.presentation.feature.common.textinput.TheTextInput
 import sk.andrei.jiratimetrackerpro.presentation.feature.settings.component.SettingsComponent
@@ -26,8 +27,8 @@ fun SettingsScreen(
     component: SettingsComponent,
 ) {
     Screen(
-        backAction = Back.Arrow(component::onBackClick),
-        onSaveClick = component::onSaveClick
+        backAction = BackAction.Arrow(component::onBackClick),
+        primaryAction = PrimaryAction.Save(component::onSaveClick)
     ) {
         LazyColumn(
             modifier = Modifier
@@ -44,16 +45,24 @@ fun SettingsScreen(
             item {
                 BaseItem {
                     TheTextInput(
-                        component = component.urlComponent,
-                        label = "url"
+                        component = component.jiraSiteComponent,
+                        label = "Site name"
+                    )
+                }
+            }
+            item {
+                BaseItem {
+                    TheTextInput(
+                        component = component.jiraEmailComponent,
+                        label = "Email"
                     )
                 }
             }
             item {
                 BaseItem {
                     ThePasswordInput(
-                        component = component.tokenComponent,
-                        label = "token"
+                        component = component.jiraTokenComponent,
+                        label = "Token"
                     )
                 }
             }

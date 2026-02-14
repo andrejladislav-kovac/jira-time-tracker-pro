@@ -30,7 +30,7 @@ fun RootScreen(
         ) {
             when (val child = it.instance) {
                 is RootComponent.Child.SettingsChild -> SettingsScreen(component = child.component)
-                is RootComponent.Child.DashboardChild -> DashboardScreen()
+                is RootComponent.Child.DashboardChild -> DashboardScreen(component = child.component)
             }
         }
     }

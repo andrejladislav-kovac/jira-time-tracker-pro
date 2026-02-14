@@ -1,9 +1,12 @@
 package sk.andrei.jiratimetrackerpro.presentation.feature.common.textinput
 
 import kotlinx.serialization.Serializable
-import sk.andrei.jiratimetrackerpro.presentation.core.StatefulComponent
+import sk.andrei.jiratimetrackerpro.presentation.core.component.StatefulComponent
+import sk.andrei.jiratimetrackerpro.presentation.core.component.ValidatableComponent
 
-interface TextInputComponent: StatefulComponent<TextInputComponent.State> {
+interface TextInputComponent:
+    StatefulComponent<TextInputComponent.State>,
+    ValidatableComponent<String> {
 
     val value: String
         get() = state.value.text

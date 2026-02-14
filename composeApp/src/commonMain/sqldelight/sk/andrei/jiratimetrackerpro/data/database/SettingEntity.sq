@@ -3,6 +3,9 @@ CREATE TABLE SettingEntity (
      value TEXT
 );
 
+findById:
+SELECT * FROM SettingEntity WHERE id = ? LIMIT 1;
+
 findByIds:
 SELECT * FROM SettingEntity WHERE id IN ?;
 

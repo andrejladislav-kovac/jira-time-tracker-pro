@@ -1,16 +1,13 @@
 package sk.andrei.jiratimetrackerpro.domain.feature.settings.usecase
 
 import sk.andrei.jiratimetrackerpro.domain.core.usecase.OutputUseCase
-import sk.andrei.jiratimetrackerpro.domain.core.usecase.UseCase
-import sk.andrei.jiratimetrackerpro.domain.feature.settings.model.JiraSettings
-import sk.andrei.jiratimetrackerpro.domain.feature.settings.repository.SettingsRepository
+import sk.andrei.jiratimetrackerpro.domain.feature.user.model.User
+import sk.andrei.jiratimetrackerpro.domain.feature.user.repository.UserRepository
 
 class GetJiraSettingsUseCase(
-    private val repository: SettingsRepository,
-): OutputUseCase<JiraSettings>() {
+    private val repository: UserRepository,
+): OutputUseCase<User>() {
 
-    override suspend fun execute(input: Unit): Result<JiraSettings> {
-        return Result.success(repository.getJiraSettings())
-    }
+    override suspend fun execute(input: Unit): Result<User> = repository.findById(Unit)
 
 }
