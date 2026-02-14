@@ -26,6 +26,7 @@ or how to make high-quality multiplatform app
 * Presentation Layer
 
 # Libraries
+* Compose (mp)
 * Ktor (mp)
 * SQLDelight (mp)
 
