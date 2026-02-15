@@ -16,7 +16,7 @@ class IssueRepositoryImpl(
     override suspend fun findAllFresh(): Result<List<Issue>> {
         return networkClient.get<SearchResponseDto>("/search/jql") {
             parameter("jql", "assignee = currentUser() AND resolution = Unresolved")
-            parameter("fields", "summary,status")
+            parameter("fields", "summary,status,timespent,priority")
         }.mapOrConnectionFailure(SearchResponseDto::toDomain)
     }
 

@@ -8,8 +8,8 @@ import sk.andrei.jiratimetrackerpro.domain.feature.settings.usecase.GetJiraSetti
 import sk.andrei.jiratimetrackerpro.domain.feature.settings.usecase.UpdateUserUseCase
 import sk.andrei.jiratimetrackerpro.domain.feature.user.model.User
 import sk.andrei.jiratimetrackerpro.presentation.core.component.BaseComponent
-import sk.andrei.jiratimetrackerpro.presentation.feature.common.passwordinput.PasswordInputComponentImpl
-import sk.andrei.jiratimetrackerpro.presentation.feature.common.textinput.TextInputComponentImpl
+import sk.andrei.jiratimetrackerpro.presentation.core.component.passwordinput.PasswordInputComponentImpl
+import sk.andrei.jiratimetrackerpro.presentation.core.component.textinput.TextInputComponentImpl
 import kotlin.getValue
 
 class SettingsComponentImpl(
@@ -38,7 +38,7 @@ class SettingsComponentImpl(
     )
 
     private val getUser: GetJiraSettingsUseCase by inject()
-    private val updateProfile by inject<UpdateJiraProfileUseCase>()
+    private val updateProfile: UpdateJiraProfileUseCase by inject()
     private val saveUser: UpdateUserUseCase by inject()
 
     init {

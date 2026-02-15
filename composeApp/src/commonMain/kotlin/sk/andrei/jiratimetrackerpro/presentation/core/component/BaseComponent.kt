@@ -37,15 +37,15 @@ abstract class BaseComponent<STATE: Any>(
         }
     }
 
-    protected fun Value<STATE>.update(provider: (STATE) -> STATE): STATE {
-        val newState = provider(value)
+    protected fun updateState(provider: (STATE) -> STATE): STATE {
+        val newState = provider(state.value)
         doInForeground {
             mutableState.value = newState
         }
         return newState
     }
 
-    protected fun reset() = state.update { initialState }
+    protected fun reset() = updateState { initialState }
 
     protected fun doInBackground(action: suspend () -> Unit) = backgroundScope.launch {
         action()

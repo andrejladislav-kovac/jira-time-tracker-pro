@@ -1,4 +1,4 @@
-package sk.andrei.jiratimetrackerpro.presentation.feature.common.textinput
+package sk.andrei.jiratimetrackerpro.presentation.core.component.textinput
 
 import kotlinx.serialization.Serializable
 import sk.andrei.jiratimetrackerpro.presentation.core.component.StatefulComponent

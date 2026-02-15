@@ -1,31 +1,31 @@
-package sk.andrei.jiratimetrackerpro.presentation.feature.common.passwordinput
+package sk.andrei.jiratimetrackerpro.presentation.core.component.textinput
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 
 @Composable
-fun ThePasswordInput(
-    component: PasswordInputComponent,
+fun TheTextInput(
+    component: TextInputComponent,
     modifier: Modifier = Modifier,
     label: String? = null,
+    placeholder: String? = null,
 ) {
     val state = component.state.subscribeAsState().value
-
     OutlinedTextField(
         modifier = modifier.fillMaxWidth(),
-        value = state.password,
-        onValueChange = component::onChange,
         label = label?.let {
             { Text(text = it) }
         },
+        placeholder = placeholder?.let {
+            { Text(text = it) }
+        },
+        value = state.text,
+        onValueChange = component::onChange,
+        isError = !state.isValid,
         singleLine = true,
-        visualTransformation = PasswordVisualTransformation(),
-        isError = !state.isValid
     )
-
 }

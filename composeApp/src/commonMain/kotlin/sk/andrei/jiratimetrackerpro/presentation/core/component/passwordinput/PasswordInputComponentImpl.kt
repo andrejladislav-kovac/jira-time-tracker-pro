@@ -1,32 +1,38 @@
-package sk.andrei.jiratimetrackerpro.presentation.feature.common.textinput
+package sk.andrei.jiratimetrackerpro.presentation.core.component.passwordinput
 
 import com.arkivanov.decompose.ComponentContext
 import sk.andrei.jiratimetrackerpro.presentation.core.component.BaseComponent
 
-open class TextInputComponentImpl(
+open class PasswordInputComponentImpl(
     context: ComponentContext,
     stateStoringName: String? = null,
     override val validator: ((String) -> Boolean) = { true }
-) : TextInputComponent, BaseComponent<TextInputComponent.State>(
+) : PasswordInputComponent, BaseComponent<PasswordInputComponent.State>(
     context = context,
     stateStoringName = stateStoringName,
-    initialState = TextInputComponent.State(),
-    serializer = TextInputComponent.State.serializer(),
+    initialState = PasswordInputComponent.State(),
+    serializer = PasswordInputComponent.State.serializer(),
 ) {
 
     override fun onChange(value: String, shouldValidate: Boolean) {
-        state.update {
+        updateState {
             it.copy(
-                text = value,
+                password = value,
                 isValid = if (shouldValidate) validator(value) else it.isValid
             )
         }
     }
 
+    override fun onVisibilityToggle() {
+        updateState {
+            it.copy(isHidden = !it.isHidden)
+        }
+    }
+
     override fun validate(): Boolean {
-        return state.update {
+        return updateState {
             it.copy(
-                isValid = validator(it.text)
+                isValid = validator(it.password)
             )
         }.isValid
     }

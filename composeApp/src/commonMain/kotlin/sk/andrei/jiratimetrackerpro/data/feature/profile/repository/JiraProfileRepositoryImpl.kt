@@ -6,6 +6,8 @@ import sk.andrei.jiratimetrackerpro.domain.feature.profile.repository.JiraProfil
 import sk.andrei.jiratimetrackerpro.data.core.network.NetworkClient
 import sk.andrei.jiratimetrackerpro.data.feature.common.settings.repository.GenericValueRepository
 import sk.andrei.jiratimetrackerpro.data.feature.profile.model.ProfileId
+import sk.andrei.jiratimetrackerpro.domain.core.asFailure
+import sk.andrei.jiratimetrackerpro.domain.core.asSuccess
 
 class JiraProfileRepositoryImpl(
     private val networkClient: NetworkClient,
@@ -27,9 +29,9 @@ class JiraProfileRepositoryImpl(
     override suspend fun getJiraProfile(): Result<JiraProfile> {
         val displayName = genericValueRepository.load(ProfileId.DISPLAY_NAME)
         return if (displayName?.value_ == null) {
-            Result.failure(RuntimeException("Name not stored"))
+            RuntimeException("Name not stored").asFailure()
         } else {
-            Result.success(JiraProfile(displayName = displayName.value_))
+            JiraProfile(displayName = displayName.value_).asSuccess()
         }
     }
 }

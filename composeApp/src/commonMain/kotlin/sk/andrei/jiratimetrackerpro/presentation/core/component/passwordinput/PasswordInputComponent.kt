@@ -1,4 +1,4 @@
-package sk.andrei.jiratimetrackerpro.presentation.feature.common.passwordinput
+package sk.andrei.jiratimetrackerpro.presentation.core.component.passwordinput
 
 import kotlinx.serialization.Serializable
 import sk.andrei.jiratimetrackerpro.presentation.core.component.StatefulComponent

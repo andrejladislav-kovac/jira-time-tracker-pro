@@ -8,11 +8,15 @@ interface DashboardComponent: StatefulComponent<DashboardComponent.State> {
 
     fun onMenuClick()
 
+    fun onItemLongClick(item: IssueListItemVo)
+
     fun refresh()
 
     @Serializable
     data class State(
-        val issues: List<IssueListItemVo> = emptyList()
+        val displayName: String? = null,
+        val issues: List<IssueListItemVo> = emptyList(),
+        val isLoading: Boolean = true
     )
 
 }

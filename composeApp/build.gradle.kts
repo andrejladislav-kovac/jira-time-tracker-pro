@@ -86,6 +86,8 @@ kotlin {
     }
 }
 
+// jvm implementation("androidx.collection:collection:1.5.0")
+
 android {
     namespace = "sk.andrei.jiratimetrackerpro"
     compileSdk = libs.versions.android.compileSdk.get().toInt()

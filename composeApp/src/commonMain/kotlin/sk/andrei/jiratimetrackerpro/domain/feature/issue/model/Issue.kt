@@ -7,6 +7,8 @@ data class Issue(
     val key: String,
     val title: String,
     val status: Status,
+    val spendTime: Long?,
+    val priority: Priority
 ): Model<String> {
 
 
@@ -16,6 +18,15 @@ data class Issue(
         CODE_REVIEW,
         DONE,
         UNKNOWN
+    }
+
+    enum class Priority {
+        LOWEST,
+        LOW,
+        MEDIUM,
+        HIGH,
+        HIGHER,
+        HIGHEST
     }
 
 

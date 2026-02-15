@@ -15,11 +15,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import sk.andrei.jiratimetrackerpro.presentation.feature.common.passwordinput.ThePasswordInput
-import sk.andrei.jiratimetrackerpro.presentation.feature.common.screen.BackAction
-import sk.andrei.jiratimetrackerpro.presentation.feature.common.screen.PrimaryAction
-import sk.andrei.jiratimetrackerpro.presentation.feature.common.screen.Screen
-import sk.andrei.jiratimetrackerpro.presentation.feature.common.textinput.TheTextInput
+import sk.andrei.jiratimetrackerpro.presentation.core.component.passwordinput.ThePasswordInput
+import sk.andrei.jiratimetrackerpro.presentation.core.ui.screen.BackAction
+import sk.andrei.jiratimetrackerpro.presentation.core.ui.screen.PrimaryAction
+import sk.andrei.jiratimetrackerpro.presentation.core.ui.screen.Screen
+import sk.andrei.jiratimetrackerpro.presentation.core.component.textinput.TheTextInput
 import sk.andrei.jiratimetrackerpro.presentation.feature.settings.component.SettingsComponent
 
 @Composable

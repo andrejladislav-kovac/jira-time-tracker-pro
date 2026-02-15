@@ -14,8 +14,32 @@ data class IssueDto(
     @Serializable
     data class Fields(
         val summary: String,
-        val status: Status
+        val status: Status,
+        @SerialName("timespent")
+        val spentTime: Long?,
+        val priority: Priority
     )
+
+    @Serializable
+    data class Priority(
+        val name: PriorityName
+    )
+
+    @Serializable
+    enum class PriorityName {
+        @SerialName("Lowest")
+        LOWEST,
+        @SerialName("Low")
+        LOW,
+        @SerialName("Medium")
+        MEDIUM,
+        @SerialName("High")
+        HIGH,
+        @SerialName("Higher")
+        HIGHER,
+        @SerialName("Highest")
+        HIGHEST
+    }
 
     @Serializable
     data class Status(
